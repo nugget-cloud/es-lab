@@ -1,0 +1,183 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         
+    2 00000000         
+    3 00000000         
+    4 00000000                 AREA             RESET,DATA,READONLY
+    5 00000000                 EXPORT           __Vectors
+    6 00000000         
+    7 00000000         __Vectors
+    8 00000000         
+    9 00000000 10001000        DCD              0x10001000
+   10 00000004 00000000        DCD              Reset_Handler
+   11 00000008                 ALIGN
+   12 00000008                 AREA             mycode,CODE,READONLY
+   13 00000000                 ENTRY
+   14 00000000                 EXPORT           Reset_Handler
+   15 00000000         
+   16 00000000         Reset_Handler
+   17 00000000         
+   18 00000000 F04F 0101       mov              r1, #1
+   19 00000004 F04F 0206       mov              r2, #6
+   20 00000008 F04F 0304       mov              r3, #4
+   21 0000000C F04F 0407       mov              r4, #7
+   22 00000010 F04F 0509       mov              r5, #9
+   23 00000014 F04F 0603       mov              r6, #3
+   24 00000018 F04F 0702       mov              r7, #2
+   25 0000001C F04F 0805       mov              r8, #5
+   26 00000020 F04F 0908       mov              r9, #8
+   27 00000024 F04F 0A0A       mov              r10, #10
+   28 00000028 E8AD 07FE       stmia            r13!, {r1-r10}
+   29 0000002C 4668            mov              r0, r13     ;r0 stores the stac
+                                                            k top
+   30 0000002E F04F 020A       mov              r2, #10     ;r2 stores number o
+                                                            f elements in stack
+                                                            
+   31 00000032 F04F 0800       mov              r8,#0       ;r8 is counter for 
+                                                            outer loop
+   32 00000036 4590    ol      cmp              r8,r2
+   33 00000038 D018            beq              exit
+   34 0000003A         
+   35 0000003A 4601            mov              r1, r0
+   36 0000003C 4603            mov              r3, r0
+   37 0000003E F1A3 0304       sub              r3, #4
+   38 00000042 F108 0901       add              r9,r8,#1
+   39 00000046 4591    il      cmp              r9,r2
+   40 00000048 D00B            beq              exin
+   41 0000004A F109 0901       add              r9,#1
+   42 0000004E F851 4C04       ldmdb            r1,{r4}
+   43 00000052 F853 5D04       ldmdb            r3!,{r5}
+   44 00000056 42A5            cmp              r5,r4
+   45 00000058 DBF5            blt              il
+   46 0000005A F841 5C04       stmdb            r1,{r5}
+   47 0000005E 601C            stm              r3,{r4}
+   48 00000060 E7F1            b                il
+   49 00000062 F1A0 0004 
+                       exin    sub              r0,#4
+   50 00000066 F108 0801       add              r8,#1
+   51 0000006A E7E4            b                ol
+   52 0000006C         
+   53 0000006C         exit
+   54 0000006C E93D 07FE       ldmdb            r13!,{r1-r10}
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   55 00000070 E7FE    stop    B                stop
+   56 00000072         
+   57 00000072                 AREA             mydata,DATA,READWRITE
+   58 00000000         
+   59 00000000                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=q4.d -oq
+4.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\NXP\LP
+C17xx --predefine="__EVAL SETA 1" --list=q4.lst q4.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 4 in file q4.s
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 7 in file q4.s
+   Uses
+      At line 5 in file q4.s
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 16 in file q4.s
+   Uses
+      At line 10 in file q4.s
+      At line 14 in file q4.s
+
+exin 00000062
+
+Symbol: exin
+   Definitions
+      At line 49 in file q4.s
+   Uses
+      At line 40 in file q4.s
+Comment: exin used once
+exit 0000006C
+
+Symbol: exit
+   Definitions
+      At line 53 in file q4.s
+   Uses
+      At line 33 in file q4.s
+Comment: exit used once
+il 00000046
+
+Symbol: il
+   Definitions
+      At line 39 in file q4.s
+   Uses
+      At line 45 in file q4.s
+      At line 48 in file q4.s
+
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 12 in file q4.s
+   Uses
+      None
+Comment: mycode unused
+ol 00000036
+
+Symbol: ol
+   Definitions
+      At line 32 in file q4.s
+   Uses
+      At line 51 in file q4.s
+Comment: ol used once
+stop 00000070
+
+Symbol: stop
+   Definitions
+      At line 55 in file q4.s
+   Uses
+      At line 55 in file q4.s
+Comment: stop used once
+7 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 57 in file q4.s
+   Uses
+      None
+Comment: mydata unused
+1 symbol
+341 symbols in table
