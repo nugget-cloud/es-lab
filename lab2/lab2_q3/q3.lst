@@ -1,0 +1,111 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             reset,DATA,READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         __Vectors
+    4 00000000 10001000        DCD              0x10001000
+    5 00000004 00000000        DCD              Reset_Handler
+    6 00000008                 ALIGN
+    7 00000008                 AREA             mycode, CODE, READONLY
+    8 00000000                 EXPORT           Reset_Handler
+    9 00000000                 ENTRY
+   10 00000000         Reset_Handler
+   11 00000000 4805            LDR              R0,=DST
+   12 00000002 F04F 0500       MOV              R5,#0
+   13 00000006 F04F 0103       LDR              R1,=0x03
+   14 0000000A F04F 0202       LDR              R2,=0x02
+   15 0000000E EB61 0502       SBC              R5,R1,R2
+   16 00000012 6005            STR              R5,[R0]
+   17 00000014         
+   18 00000014         STOP
+   19 00000014 E7FE            B                STOP
+   20 00000016 00 00 00000000  AREA             data, DATA,READWRITE
+   21 00000000 00000000 
+                       DST     DCD              0x0
+   22 00000004                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=q3.d -oq
+3.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\NXP\LP
+C17xx --predefine="__EVAL SETA 1" --list=q3.lst q3.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 3 in file q3.s
+   Uses
+      At line 2 in file q3.s
+Comment: __Vectors used once
+reset 00000000
+
+Symbol: reset
+   Definitions
+      At line 1 in file q3.s
+   Uses
+      None
+Comment: reset unused
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 10 in file q3.s
+   Uses
+      At line 5 in file q3.s
+      At line 8 in file q3.s
+
+STOP 00000014
+
+Symbol: STOP
+   Definitions
+      At line 18 in file q3.s
+   Uses
+      At line 19 in file q3.s
+Comment: STOP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 7 in file q3.s
+   Uses
+      None
+Comment: mycode unused
+3 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+DST 00000000
+
+Symbol: DST
+   Definitions
+      At line 21 in file q3.s
+   Uses
+      At line 11 in file q3.s
+Comment: DST used once
+data 00000000
+
+Symbol: data
+   Definitions
+      At line 20 in file q3.s
+   Uses
+      None
+Comment: data unused
+2 symbols
+340 symbols in table
