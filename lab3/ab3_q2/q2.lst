@@ -1,0 +1,153 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             reset,DATA,READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         __Vectors
+    4 00000000 10001000        DCD              0x10001000
+    5 00000004 00000000        DCD              Reset_Handler
+    6 00000008                 ALIGN
+    7 00000008                 AREA             mycode,CODE,READONLY
+    8 00000000                 EXPORT           Reset_Handler
+    9 00000000                 ENTRY
+   10 00000000         Reset_Handler
+   11 00000000 4F0B            LDR              R7,=DST
+   12 00000002 F04F 0137       LDR              R1,=55
+   13 00000006 F04F 020B       LDR              R2,=11
+   14 0000000A 4291    UP      CMP              R1,R2
+   15 0000000C D004            BEQ              GCD
+   16 0000000E D204            BCS              DIV
+   17 00000010 460D            MOV              R5,R1
+   18 00000012 4611            MOV              R1,R2
+   19 00000014 462A            MOV              R2,R5
+   20 00000016 E000            B                DIV
+   21 00000018         
+   22 00000018 4692    GCD     MOV              R10,R2
+   23 0000001A         
+   24 0000001A EBA1 0102 
+                       DIV     SUB              R1,R2
+   25 0000001E 4291            CMP              R1,R2
+   26 00000020 D2FB            BCS              DIV
+   27 00000022 2900            CMP              R1,#0
+   28 00000024 D0F8            BEQ              GCD
+   29 00000026 E7F0            B                UP
+   30 00000028         
+   31 00000028 F8C7 A000       STR              R10,[R7]
+   32 0000002C         STOP
+   33 0000002C E7FE            B                STOP
+   34 0000002E 00 00 00000000  AREA             mydate,DATA,READWRITE
+   35 00000000 00000000 
+                       DST     DCD              0x0
+   36 00000004                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=q2.d -oq
+2.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\NXP\LP
+C17xx --predefine="__EVAL SETA 1" --list=q2.lst q2.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 3 in file q2.s
+   Uses
+      At line 2 in file q2.s
+Comment: __Vectors used once
+reset 00000000
+
+Symbol: reset
+   Definitions
+      At line 1 in file q2.s
+   Uses
+      None
+Comment: reset unused
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+DIV 0000001A
+
+Symbol: DIV
+   Definitions
+      At line 24 in file q2.s
+   Uses
+      At line 16 in file q2.s
+      At line 20 in file q2.s
+      At line 26 in file q2.s
+
+GCD 00000018
+
+Symbol: GCD
+   Definitions
+      At line 22 in file q2.s
+   Uses
+      At line 15 in file q2.s
+      At line 28 in file q2.s
+
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 10 in file q2.s
+   Uses
+      At line 5 in file q2.s
+      At line 8 in file q2.s
+
+STOP 0000002C
+
+Symbol: STOP
+   Definitions
+      At line 32 in file q2.s
+   Uses
+      At line 33 in file q2.s
+Comment: STOP used once
+UP 0000000A
+
+Symbol: UP
+   Definitions
+      At line 14 in file q2.s
+   Uses
+      At line 29 in file q2.s
+Comment: UP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 7 in file q2.s
+   Uses
+      None
+Comment: mycode unused
+6 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+DST 00000000
+
+Symbol: DST
+   Definitions
+      At line 35 in file q2.s
+   Uses
+      At line 11 in file q2.s
+Comment: DST used once
+mydate 00000000
+
+Symbol: mydate
+   Definitions
+      At line 34 in file q2.s
+   Uses
+      None
+Comment: mydate unused
+2 symbols
+343 symbols in table
